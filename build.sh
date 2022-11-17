@@ -2,9 +2,9 @@
 
 DATE=$(TZ=GMT-8 date +"%Y%m%d-%H%M")
 
-MODEL="Samsung galaxy Note 10 plus"
+MODEL="Samsung galaxy S10 5G"
 
-DEVICE="d2s"
+DEVICE="beyondx"
 
 NAME="sploitpay-v1"
 
@@ -44,9 +44,9 @@ tg_post_build() {
 build_kernel() {
 tg_post_msg "<b>Build Triggered</b>%0A<b>OS: </b><code>Ubuntu</code>%0A<b>Kernel Version : </b><code>$KERVER</code>%0A<b>Date : </b><code>$(TZ=GMT-8 date)</code>%0A<b>Device : </b><code>$MODEL [$DEVICE]</code>%0A<b>Host Core Count : </b><code>$PROCS</code>%0A<b>Compiler used: </b><code>Clang</code>%0A<b>Top Commit : </b><code>$COMMIT_HEAD</code>"
 chmod +x build.py
-./build.py build model=N975F name="$NAME" toolchain=system-clang
+./build.py build model=G977B name="$NAME" toolchain=google
 
-if [ -f arch/arm64/boot/Image-N975F ]
+if [ -f arch/arm64/boot/Image-G977B ]
 then
 	echo "Kernel Successfully Compiled"
 else
@@ -60,7 +60,7 @@ fi
 
 build_image_dtbo() {
 wget -q https://android.googlesource.com/platform/system/tools/mkbootimg/+archive/refs/heads/master.tar.gz -O - | tar xzf - mkbootimg.py
-./mkbootimg.py --header_version=1 --os_version=11.0.0 --os_patch_level=2021-09 --board=SRPSC14B006KU --pagesize=2048 --cmdline=androidboot.selinux=permissive --base=0x10000000 --kernel_offset=0x00008000 --ramdisk_offset=0x00000000 --second_offset=0x00000000 --tags_offset=0x00000100 --kernel=arch/arm64/boot/Image-N975F -o arch/arm64/boot/N975F.img
+./mkbootimg.py --header_version=1 --os_version=11.0.0 --os_patch_level=2021-09 --board=SRPSC14B006KU --pagesize=2048 --cmdline=androidboot.selinux=permissive --base=0x10000000 --kernel_offset=0x00008000 --ramdisk_offset=0x00000000 --second_offset=0x00000000 --tags_offset=0x00000100 --kernel=arch/arm64/boot/Image-G977B -o arch/arm64/boot/G977B.img
 
 #wget -q https://android.googlesource.com/platform/system/libufdt/+archive/refs/heads/master.tar.gz -O - | tar --strip-components 2 -xzf - utils/src/mkdtboimg.py
 #./mkdtboimg.py cfg_create --dtb-dir=arch/arm64/boot/dts/samsung  arch/arm64/boot/dtbo-N975F.img cruel/dtbo.N975F
@@ -78,7 +78,7 @@ git clone https://github.com/Tkpointz/sploitpay_kernel_modules.git modules
 
 #moving output files to flashable zip
 
-mv arch/arm64/boot/N975F.img AnyKernel3/
+mv arch/arm64/boot/G977B.img AnyKernel3/
 mv drivers/staging/rtl8812au/88XXau.ko modules/system/lib/modules
 mv drivers/staging/rtl8814au/8814au.ko modules/system/lib/modules
 mv drivers/staging/rtl8188eus/8188eu.ko modules/system/lib/modules
