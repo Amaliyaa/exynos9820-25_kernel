@@ -6,7 +6,7 @@ MODEL="Samsung Galaxy S10 5G"
 
 DEVICE="beyondx"
 
-NAME="sploitpay-v1"
+NAME="NetHunterKernel"
 
 CHATID="-1001555864767"
 
@@ -44,7 +44,7 @@ tg_post_build() {
 build_kernel() {
 tg_post_msg "<b>Build Triggered</b>%0A<b>OS: </b><code>Ubuntu</code>%0A<b>Kernel Version : </b><code>$KERVER</code>%0A<b>Date : </b><code>$(TZ=GMT-8 date)</code>%0A<b>Device : </b><code>$MODEL [$DEVICE]</code>%0A<b>Host Core Count : </b><code>$PROCS</code>%0A<b>Compiler used: </b><code>Clang</code>%0A<b>Top Commit : </b><code>$COMMIT_HEAD</code>"
 chmod +x build.py
-./build.py build model=G977B name="$NAME" toolchain=samsung
+./build.py build model=G977B name="$NAME" toolchain=system-clang
 
 if [ -f arch/arm64/boot/Image-G977B ]
 then
