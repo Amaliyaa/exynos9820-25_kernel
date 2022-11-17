@@ -2,7 +2,7 @@
 
 DATE=$(TZ=GMT-8 date +"%Y%m%d-%H%M")
 
-MODEL="Samsung galaxy S10 5G"
+MODEL="Samsung Galaxy S10 5G"
 
 DEVICE="beyondx"
 
