@@ -18,6 +18,6 @@ jobs:
         run: chmod +x build.sh && ./build.sh "${token}"
 
 
- strategy:
+    strategy:
       matrix:
-        model: [ "N970F" ]
+        model: [ "N975F" ]
